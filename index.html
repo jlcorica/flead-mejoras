@@ -3,36 +3,532 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>flead.org</title>
+<title>FLEAD — Fundación Latinoamericana para la Educación a Distancia</title>
+<meta name="description" content="Fundación Latinoamericana para la Educación a Distancia (FLEAD). Investigación, aula virtual, editorial, congresos y dirección de tesis en Educación a Distancia para Iberoamérica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: #0f0f10;
-    color: #f2f2f2;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
+  :root{
+    --navy:#12213a;
+    --navy-2:#1c3357;
+    --ink:#1a2233;
+    --ink-soft:#4a5568;
+    --paper:#fbfaf7;
+    --paper-2:#f3f0e8;
+    --card:#ffffff;
+    --line:#e4e0d4;
+    --gold:#b08a3e;
+    --gold-soft:#e9dcc0;
+    --teal:#2f6f6a;
+    --max:1180px;
+    --radius:14px;
+    --shadow:0 10px 30px -12px rgba(18,33,58,.18);
+    font-size:16px;
   }
-  h1 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
   }
-  p {
-    color: #a3a3a3;
-    font-size: 1.1rem;
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.15;
+    color:var(--navy);
+    margin:0 0 .5em;
+  }
+  p{margin:0 0 1em;}
+  a{color:var(--teal);}
+  img{max-width:100%;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  section{padding:clamp(56px,9vw,96px) 0;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); font-weight:700; margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--gold); display:inline-block;}
+  .lead{font-size:1.1rem; color:var(--ink-soft); max-width:62ch;}
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,250,247,.92);
+    backdrop-filter:saturate(160%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:var(--max); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:9px;
+    background:linear-gradient(155deg,var(--navy),var(--navy-2));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.05rem; flex:none;
+  }
+  .brand-text{font-family:'Fraunces',serif; font-weight:700; color:var(--navy); font-size:1.05rem; letter-spacing:.01em;}
+  .brand-text span{display:block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:.62rem; letter-spacing:.06em; color:var(--ink-soft); text-transform:uppercase; margin-top:1px;}
+
+  nav.primary{display:flex; align-items:center; gap:2px;}
+  nav.primary a{
+    text-decoration:none; color:var(--ink); font-weight:600; font-size:.92rem;
+    padding:9px 13px; border-radius:8px; white-space:nowrap;
+  }
+  nav.primary a:hover{background:var(--paper-2); color:var(--navy);}
+  .nav-cta{
+    background:var(--navy) !important; color:#fff !important; margin-left:6px;
+  }
+  .nav-cta:hover{background:var(--navy-2) !important;}
+
+  #nav-toggle{display:none;}
+  .burger{
+    display:none; width:42px; height:42px; border-radius:8px; border:1px solid var(--line);
+    background:#fff; align-items:center; justify-content:center; cursor:pointer;
+  }
+  .burger span, .burger span::before, .burger span::after{
+    content:""; display:block; width:18px; height:2px; background:var(--navy); position:relative;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .burger span::before{position:absolute; top:-6px;}
+  .burger span::after{position:absolute; top:6px;}
+
+  @media (max-width:900px){
+    nav.primary{
+      position:fixed; inset:64px 0 auto 0; background:var(--paper);
+      flex-direction:column; align-items:stretch; gap:0; padding:8px 20px 20px;
+      border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+      transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:transform .2s ease, opacity .2s ease; max-height:calc(100vh - 64px); overflow-y:auto;
+    }
+    nav.primary a{padding:13px 8px; border-bottom:1px solid var(--line); border-radius:0;}
+    nav.primary .nav-cta{margin:12px 0 0; border-radius:8px; text-align:center; border-bottom:none;}
+    #nav-toggle:checked ~ nav.primary{transform:translateY(0); opacity:1; pointer-events:auto;}
+    .burger{display:flex;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 480px at 85% -10%, rgba(176,138,62,.16), transparent 60%),
+      linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:#f2ede2; padding:clamp(64px,10vw,120px) 0 clamp(56px,8vw,90px);
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center;}
+  .hero .eyebrow{color:var(--gold-soft);}
+  .hero .eyebrow::before{background:var(--gold-soft);}
+  .hero h1{color:#fff; font-size:clamp(2.1rem,4.4vw,3.4rem); max-width:16ch;}
+  .hero p.lead{color:#d6d0c1; max-width:52ch; font-size:1.15rem;}
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    font-weight:700; font-size:.95rem; padding:13px 22px; border-radius:9px;
+    border:1px solid transparent; transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-gold{background:var(--gold); color:#241a06;}
+  .btn-gold:hover{background:#c39a49;}
+  .btn-ghost{border-color:rgba(255,255,255,.35); color:#f2ede2;}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);}
+
+  .hero-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+    border-radius:var(--radius); padding:26px; backdrop-filter:blur(6px);
+  }
+  .hero-card dl{display:grid; grid-template-columns:auto 1fr; gap:10px 14px; margin:0;}
+  .hero-card dt{font-family:'Fraunces',serif; color:var(--gold-soft); font-weight:600; font-size:1.6rem; line-height:1;}
+  .hero-card dd{margin:0; color:#d6d0c1; font-size:.85rem; align-self:center;}
+  .hero-card hr{border:none; border-top:1px solid rgba(255,255,255,.15); margin:18px 0;}
+
+  /* ---------- Generic sections ---------- */
+  .section-head{max-width:68ch; margin-bottom:38px;}
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px; box-shadow:var(--shadow);
+  }
+  .card h3{font-size:1.3rem; display:flex; align-items:center; gap:10px;}
+  .card h3 .ic{
+    width:38px; height:38px; border-radius:9px; background:var(--paper-2);
+    display:flex; align-items:center; justify-content:center; flex:none; font-size:1.05rem;
+  }
+
+  .alt{background:var(--paper-2);}
+
+  /* Historia */
+  .historia .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:start;}
+  .timeline{border-left:2px solid var(--gold-soft); padding-left:22px; margin-left:6px;}
+  .timeline .yr{font-family:'Fraunces',serif; color:var(--gold); font-weight:700; font-size:1.4rem;}
+
+  /* Objetivos */
+  .obj-highlights{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:8px;}
+  .obj-highlights .card{padding:24px;}
+  .obj-highlights .num{
+    font-family:'Fraunces',serif; color:var(--gold); font-weight:700; font-size:1.1rem;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border:1px solid var(--gold-soft); border-radius:50%;
+    margin-bottom:12px;
+  }
+  details.full-objetivos{
+    margin-top:30px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card);
+    overflow:hidden;
+  }
+  details.full-objetivos summary{
+    cursor:pointer; list-style:none; padding:18px 24px; font-weight:700; color:var(--navy);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  details.full-objetivos summary::-webkit-details-marker{display:none;}
+  details.full-objetivos summary::after{content:"+"; font-size:1.4rem; color:var(--gold); line-height:1; transform:translateY(-1px);}
+  details.full-objetivos[open] summary::after{content:"–";}
+  details.full-objetivos .obj-body{padding:0 26px 26px; color:var(--ink-soft);}
+  details.full-objetivos .obj-body h4{color:var(--navy); font-size:1rem; margin-top:22px; font-family:'Source Sans 3',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.8rem;}
+  details.full-objetivos ol,details.full-objetivos ul{padding-left:1.2em; margin:0;}
+  details.full-objetivos li{margin-bottom:10px;}
+
+  /* Autoridades */
+  .presidente{
+    display:grid; grid-template-columns:auto 1fr; gap:26px; align-items:center;
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px; box-shadow:var(--shadow); margin-bottom:34px;
+  }
+  .avatar{
+    width:84px; height:84px; border-radius:50%; flex:none;
+    background:linear-gradient(155deg,var(--navy),var(--teal));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.6rem;
+  }
+  .presidente .role{color:var(--gold); font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px;}
+  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .team-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .team-card .flag{font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--teal); margin-bottom:6px;}
+  .team-card h4{font-size:1.02rem; margin-bottom:4px; font-family:'Source Sans 3',sans-serif; font-weight:700; color:var(--navy);}
+  .team-card p{font-size:.88rem; color:var(--ink-soft); margin:0;}
+
+  /* Programas */
+  .programs-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .program{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; box-shadow:var(--shadow); display:flex; flex-direction:column; height:100%;
+  }
+  .program .ic{
+    width:46px; height:46px; border-radius:10px; background:var(--paper-2);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:16px;
+  }
+  .program p{color:var(--ink-soft); font-size:.95rem; flex:1;}
+  .program .go{font-weight:700; font-size:.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:6px; margin-top:6px;}
+  .program .go::after{content:"→"; transition:transform .15s ease;}
+  .program .go:hover::after{transform:translateX(3px);}
+
+  /* Contacto */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .contact-card{
+    background:var(--navy); color:#f2ede2; border-radius:var(--radius); padding:30px;
+  }
+  .contact-card .eyebrow{color:var(--gold-soft);}
+  .contact-card .eyebrow::before{background:var(--gold-soft);}
+  .contact-card a{color:#fff; font-weight:700; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.35);}
+  .contact-list{list-style:none; margin:0; padding:0; display:grid; gap:14px;}
+  .contact-list li{display:flex; flex-direction:column; gap:2px;}
+  .contact-list .k{font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:#a9b0c2;}
+
+  footer.site{background:var(--paper-2); border-top:1px solid var(--line); padding:34px 0; color:var(--ink-soft); font-size:.85rem;}
+  footer.site .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center;}
+  footer.site a{color:var(--ink-soft);}
+
+  .skip-link{position:absolute; left:-999px; top:0; background:var(--navy); color:#fff; padding:10px 16px; border-radius:0 0 8px 0; z-index:100;}
+  .skip-link:focus{left:0;}
+
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-card{order:-1;}
+    .historia .wrap{grid-template-columns:1fr;}
+    .obj-highlights{grid-template-columns:1fr 1fr;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .programs-grid{grid-template-columns:1fr 1fr;}
+    .grid-2{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 18px;}
+    section{padding:44px 0;}
+    .obj-highlights{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:1fr;}
+    .programs-grid{grid-template-columns:1fr;}
+    .presidente{grid-template-columns:1fr; text-align:center;}
+    .presidente .avatar{margin:0 auto;}
+    .hero-card dl{grid-template-columns:auto 1fr;}
+    footer.site .wrap{flex-direction:column; align-items:flex-start;}
   }
 </style>
 </head>
 <body>
-  <div>
-    <h1>flead.org</h1>
-    <p>Sitio en mantenimiento.</p>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site">
+  <div class="nav-row">
+    <a class="brand" href="#inicio">
+      <span class="brand-mark">F</span>
+      <span class="brand-text">FLEAD<span>Educación a Distancia</span></span>
+    </a>
+    <input type="checkbox" id="nav-toggle">
+    <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span></label>
+    <nav class="primary">
+      <a href="#inicio">Inicio</a>
+      <a href="#fundacion">La Fundación</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#autoridades">Autoridades</a>
+      <a href="#programas">Programas</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </nav>
   </div>
+</header>
+
+<main id="contenido">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Fundada en 2004</span>
+        <h1>Fundación Latinoamericana para la Educación a Distancia</h1>
+        <p class="lead">Bienvenidos al sitio oficial de FLEAD. Impulsamos la investigación, la formación y la difusión de la Educación a Distancia en Iberoamérica desde hace más de dos décadas.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#programas">Conocer nuestros programas</a>
+          <a class="btn btn-ghost" href="#contacto">Escribirnos</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <dl>
+          <dt>2004</dt><dd>Año de constitución de la Fundación, tras dos años de trabajo comunitario en red.</dd>
+          <hr>
+          <dt>16+</dt><dd>Investigadores y representantes en Argentina, México, España, Rep. Dominicana, Bolivia, Perú y Grecia.</dd>
+          <hr>
+          <dt>8</dt><dd>Ediciones del Congreso Virtual Iberoamericano EduQ@ de Calidad en Educación Virtual y a Distancia.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA FUNDACIÓN: historia + mision + vision -->
+  <section class="historia" id="fundacion">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Nuestra historia</h2>
+        <div class="timeline">
+          <p><span class="yr">2002</span><br>Un grupo de investigadores impulsa un proyecto para integrar servicios y crear una plataforma de interacción entre profesionales de la Educación a Distancia.</p>
+          <p>Durante casi dos años, el trabajo colaborativo por Internet permite analizar las necesidades reales de investigadores independientes, profesores y estudiantes en formación continua.</p>
+          <p><span class="yr">2004</span><br>Para nuclear a esta comunidad creciente nace la <strong>Fundación Latinoamericana para la Educación a Distancia</strong>: una institución sin fines de lucro dedicada a difundir la modalidad a distancia como herramienta clave de la formación profesional permanente.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="grid-template-columns:1fr; gap:24px;">
+        <div class="card">
+          <h3><span class="ic">🎯</span>Misión</h3>
+          <p>Ubicar a la Educación a Distancia como parte integral del sistema educativo, considerándola una alternativa con formas particulares de organización y requerimientos específicos para su desarrollo.</p>
+        </div>
+        <div class="card">
+          <h3><span class="ic">🔭</span>Visión</h3>
+          <p>Promover y facilitar el desarrollo de la Educación a Distancia en las prácticas educativas de todos los niveles del sistema, en el marco de los nuevos paradigmas metodológicos y tecnológicos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJETIVOS -->
+  <section class="alt" id="objetivos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Para qué trabajamos</span>
+        <h2>Objetivos de la Fundación</h2>
+        <p class="lead">Nuestro estatuto define objetivos institucionales y sociales. Estos son los ejes principales:</p>
+      </div>
+      <div class="obj-highlights">
+        <div class="card">
+          <span class="num">1</span>
+          <h4 style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:1.02rem;">Investigación y formación docente</h4>
+          <p style="font-size:.92rem;color:var(--ink-soft);">Estimular el estudio y la investigación en Educación a Distancia, formando y perfeccionando docentes e investigadores.</p>
+        </div>
+        <div class="card">
+          <span class="num">2</span>
+          <h4 style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:1.02rem;">Programas académicos propios</h4>
+          <p style="font-size:.92rem;color:var(--ink-soft);">Fundar y administrar institutos, carreras de grado y posgrado, y centros de investigación científica y cultural.</p>
+        </div>
+        <div class="card">
+          <span class="num">3</span>
+          <h4 style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:1.02rem;">Cooperación internacional</h4>
+          <p style="font-size:.92rem;color:var(--ink-soft);">Firmar convenios con instituciones públicas y privadas, nacionales e internacionales, afines a nuestro objeto fundacional.</p>
+        </div>
+      </div>
+
+      <details class="full-objetivos">
+        <summary>Ver el listado completo de objetivos institucionales y sociales</summary>
+        <div class="obj-body">
+          <h4>Objetivos institucionales</h4>
+          <ol type="A">
+            <li>Estimular el estudio e investigación en el área de educación a distancia, integrando todas sus ramas, a través de la formación y el perfeccionamiento del personal docente y auxiliar, mediante institutos de enseñanza e investigación que podrán funcionar en universidades, colegios o instituciones oficiales bajo dependencia directa de la Fundación.</li>
+            <li>Realizar tareas de enseñanza, docencia e investigación que contribuyan al desarrollo socio-político, cultural e intelectual de las instituciones y de la comunidad, dentro de escuelas, institutos o colegios universitarios de nivel terciario.</li>
+            <li>Lograr el perfeccionamiento y la capacitación integral, científica y humanística de quienes participan del proyecto educativo, en orden a la excelencia de profesionales, docentes, investigadores y educandos.</li>
+            <li>Fundar, adquirir y administrar escuelas, colegios, universidades e institutos, o cualquier otro tipo de establecimiento educacional formativo o de perfeccionamiento.</li>
+            <li>Organizar y desarrollar carreras de grado y posgrado, especialmente colegios universitarios de nivel terciario y universidades.</li>
+            <li>Organizar el centro de documentación de la Fundación y brindar información sobre sus fines, logros y objetivos, realizando publicaciones, traducciones y ediciones.</li>
+            <li>Mantener vinculaciones y convenios de cooperación, complementación y asistencia con otras personas físicas o jurídicas, públicas o privadas, nacionales o internacionales, dedicadas al estudio y ejecución de nuestro objeto.</li>
+            <li>Organizar, participar y/o patrocinar congresos, conferencias, simposios, seminarios, reuniones, exposiciones, cursos y jornadas académicas vinculadas a nuestra actividad.</li>
+            <li>Promover y encarar acciones que despierten y estimulen la vocación por los estudios de todas las disciplinas vinculadas a nuestro objeto.</li>
+          </ol>
+          <h4>Objetivos sociales</h4>
+          <ol>
+            <li>Formar profesionales que contribuyan al desarrollo de la sociedad mediante la investigación en un mundo intercomunicado.</li>
+            <li>Apoyar la formación continua de los profesionales y su capacitación en medios didácticos no convencionales de elevado nivel científico, técnico y humanístico.</li>
+            <li>Profundizar el desarrollo de programas de EAD garantizando la promoción social de sus destinatarios, mediante el autoaprendizaje y la autoconstrucción metacognitiva y autónoma del saber.</li>
+            <li>Nuclear a los investigadores independientes, apoyándolos con la infraestructura necesaria para sus trabajos de investigación en el área educativa.</li>
+          </ol>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- AUTORIDADES -->
+  <section id="autoridades">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Gobierno institucional</span>
+        <h2>Autoridades y representantes</h2>
+        <p class="lead">FLEAD está conducida por un Consejo Directivo y una red de representantes académicos en Iberoamérica y Europa.</p>
+      </div>
+
+      <div class="presidente">
+        <div class="avatar">JLC</div>
+        <div>
+          <div class="role">Presidente</div>
+          <h3 style="margin-bottom:4px;">Mgter. Lic. José Luis Córica</h3>
+          <p style="margin-bottom:6px;color:var(--ink-soft);">Doctorando en Innovación Curricular, Tecnológica e Institucional (UNED, España). Dirige el Instituto Latinoamericano de Investigación Educativa y ejerce docencia de posgrado en universidades de México, Bolivia y Argentina.</p>
+          <p style="margin:0;font-size:.9rem;"><a href="mailto:presidencia@flead.org">presidencia@flead.org</a> · <a href="mailto:jlcorica@flead.org">jlcorica@flead.org</a></p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card"><div class="flag">México</div><h4>Ma. Sol Orozco Aguirre</h4><p>Representante para España e Islas Baleares. Maestría en Edición (Univ. de Alicante / Barcelona / Carlos III).</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Ma. de Lourdes Hernández Aguilar</h4><p>Representante para México. Coordinadora Académica del Campus Virtual, UAEH.</p></div>
+        <div class="team-card"><div class="flag">Rep. Dominicana</div><h4>Magdalena Cruz Benzán</h4><p>Representante para el Caribe. Vice-rectora de Asuntos Internacionales, UAPA.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Elinore Joy Holloway Creed</h4><p>Magíster UNED. Ha dirigido más de 30 tesis de investigación en la UNAM.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Patricia Legorreta</h4><p>Responsable de Diseño Instruccional, Campus Virtual UAEH; Directora Académica, INACIPER.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Ciro Sampiero Levinson</h4><p>Coordinador de la Especialidad en Tecnología Educativa, Campus Virtual UAEH.</p></div>
+        <div class="team-card"><div class="flag">Bolivia</div><h4>María Elena Palma Moreno</h4><p>Doctora en Ciencias de la Educación. Docente-tutora de plataformas educativas en Moodle.</p></div>
+        <div class="team-card"><div class="flag">Argentina</div><h4>Denise Rodaro</h4><p>Profesora de Historia. Fundadora de la comunidad telemática del Corredor Bioceánico del Norte Santafesino.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Gloria de la Garza</h4><p>Académica de tiempo completo, UNAM (FES Acatlán). Autora de materiales educativos en español e italiano.</p></div>
+        <div class="team-card"><div class="flag">Grecia</div><h4>Charalampos Dimou</h4><p>Máster Internacional UNED. Formador docente en TIC en Atenas y en la UAEH, México.</p></div>
+        <div class="team-card"><div class="flag">Argentina</div><h4>Lilian Cejas</h4><p>Especialista en Docencia Universitaria (UTN). Formación de tutores en EAD por Internet.</p></div>
+        <div class="team-card"><div class="flag">Rep. Dominicana</div><h4>Nancy M. Rojas de Beras</h4><p>Máster en Enseñanza y Aprendizaje Abierta y a Distancia. Licenciada en Mercadeo.</p></div>
+        <div class="team-card"><div class="flag">Perú</div><h4>María Chiok Guerra</h4><p>Directora del Centro Internacional de Tecnologías, Desarrollo Empresarial y Liderazgo, Univ. Ricardo Palma.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Gabriel Almazán Vega</h4><p>Profesor investigador de tiempo completo, UAEH. Responsable del Campus Tepeji.</p></div>
+        <div class="team-card"><div class="flag">México</div><h4>Yadira Ríos Ramírez</h4><p>Jefa de Departamento del Bachillerato a Distancia, UAEM.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMAS -->
+  <section class="alt" id="programas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Qué hacemos</span>
+        <h2>Programas e iniciativas</h2>
+        <p class="lead">Seis frentes de trabajo, desde el aula virtual hasta la publicación científica.</p>
+      </div>
+      <div class="programs-grid">
+
+        <div class="program">
+          <div class="ic">💻</div>
+          <h3 style="font-size:1.1rem;">Aula Virtual (Moodle)</h3>
+          <p>Ofrecemos aulas virtuales Moodle propias, personalizadas con la identidad de cada institución educativa, para hasta 1.000 usuarios y 50 cursos.</p>
+          <a class="go" href="mailto:aulavirtuales@flead.org">Solicitar información</a>
+        </div>
+
+        <div class="program">
+          <div class="ic">📚</div>
+          <h3 style="font-size:1.1rem;">Editorial Virtual Argentina</h3>
+          <p>Oferta editorial de la comunidad educativa: publicación de trabajos investigativos, tesis y artículos para la comunidad hispanohablante.</p>
+          <a class="go" href="https://editorialeva.net" target="_blank" rel="noopener">Visitar editorialeva.net</a>
+        </div>
+
+        <div class="program">
+          <div class="ic">🌐</div>
+          <h3 style="font-size:1.1rem;">Congreso EduQ@</h3>
+          <p>Congreso Virtual Iberoamericano de Calidad en Educación Virtual y a Distancia, con ocho ediciones realizadas junto a universidades de Latinoamérica.</p>
+          <a class="go" href="http://www.eduqa.net" target="_blank" rel="noopener">Visitar eduqa.net</a>
+        </div>
+
+        <div class="program">
+          <div class="ic">📰</div>
+          <h3 style="font-size:1.1rem;">Revista Cognición</h3>
+          <p>Revista científica abierta: cualquier miembro de la comunidad latinoamericana puede proponer artículos y trabajos de investigación.</p>
+          <a class="go" href="http://www.cognicion.net/" target="_blank" rel="noopener">Visitar cognicion.net</a>
+        </div>
+
+        <div class="program">
+          <div class="ic">🔬</div>
+          <h3 style="font-size:1.1rem;">Instituto Latinoamericano de Investigación Educativa</h3>
+          <p>Nuclea a investigadores independientes con casillas de correo, alojamiento web, procesamiento estadístico, aulas virtuales y bibliotecas de datos compartidos.</p>
+          <a class="go" href="mailto:info@flead.org">Conocer los proyectos</a>
+        </div>
+
+        <div class="program">
+          <div class="ic">🎓</div>
+          <h3 style="font-size:1.1rem;">Dirección de Tesis</h3>
+          <p>Acompañamos tesistas de grado, maestría y doctorado con un director de tesis y una comunidad de investigadores en su misma línea de trabajo.</p>
+          <a class="go" href="mailto:info@flead.org">Consultar disponibilidad</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Hablemos</span>
+          <h2>Contacto</h2>
+          <p class="lead">Escribinos para consultas institucionales, aulas virtuales, publicaciones o dirección de tesis. Te respondemos desde el área correspondiente.</p>
+        </div>
+        <div class="contact-card">
+          <span class="eyebrow">Correos directos</span>
+          <ul class="contact-list">
+            <li><span class="k">Consultas generales</span><a href="mailto:info@flead.org">info@flead.org</a></li>
+            <li><span class="k">Presidencia</span><a href="mailto:presidencia@flead.org">presidencia@flead.org</a></li>
+            <li><span class="k">Aulas virtuales / Moodle</span><a href="mailto:aulavirtuales@flead.org">aulavirtuales@flead.org</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© <span id="year"></span> Fundación Latinoamericana para la Educación a Distancia (FLEAD)</span>
+    <span><a href="mailto:info@flead.org">info@flead.org</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('nav.primary a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var t = document.getElementById('nav-toggle');
+      if (t) t.checked = false;
+    });
+  });
+</script>
+
 </body>
 </html>
