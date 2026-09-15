@@ -199,11 +199,13 @@
     padding:30px; box-shadow:var(--shadow); margin-bottom:34px;
   }
   .avatar{
-    width:84px; height:84px; border-radius:50%; flex:none;
+    width:112px; height:112px; border-radius:50%; flex:none;
     background:linear-gradient(155deg,var(--navy),var(--teal));
     color:#fff; display:flex; align-items:center; justify-content:center;
     font-family:'Fraunces',serif; font-weight:700; font-size:1.6rem;
+    overflow:hidden;
   }
+  .avatar img{width:100%; height:100%; object-fit:cover; object-position:top center;}
   .presidente .role{color:var(--gold); font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px;}
   .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .team-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px;}
@@ -405,11 +407,11 @@
       </div>
 
       <div class="presidente">
-        <div class="avatar">JLC</div>
+        <div class="avatar"><img src="img/jose-luis-corica.png" alt="José Luis Córica, Presidente de FLEAD" width="112" height="112" loading="lazy"></div>
         <div>
           <div class="role">Presidente</div>
-          <h3 style="margin-bottom:4px;">Mgter. Lic. José Luis Córica</h3>
-          <p style="margin-bottom:6px;color:var(--ink-soft);">Doctorando en Innovación Curricular, Tecnológica e Institucional (UNED, España). Dirige el Instituto Latinoamericano de Investigación Educativa y ejerce docencia de posgrado en universidades de México, Bolivia y Argentina.</p>
+          <h3 style="margin-bottom:4px;">Dr. José Luis Córica</h3>
+          <p style="margin-bottom:6px;color:var(--ink-soft);">Doctor en Educación, mención Doctorado Internacional, por la UNED de Madrid (2019, sobresaliente cum laude). Dirige la Fundación y el Instituto Latinoamericano de Investigación Educativa desde 2011, y es Director de Ciencia de Datos en EmotionMetrics.ai. Profesor de posgrado en universidades de España, Argentina, México, Nicaragua y República Dominicana; miembro del Board of Experts de HE Higher Education Ranking.</p>
           <p style="margin:0;font-size:.9rem;"><a href="mailto:presidencia@flead.org">presidencia@flead.org</a> · <a href="mailto:jlcorica@flead.org">jlcorica@flead.org</a></p>
         </div>
       </div>
