@@ -68,7 +68,7 @@
     padding:10px 24px; max-width:var(--max); margin:0 auto;
   }
   .brand{display:flex; align-items:center; gap:10px; text-decoration:none; flex:none;}
-  .brand-logo{height:100px; width:auto; display:block;}
+  .brand-logo{height:60px; width:auto; display:block;}
 
   nav.primary{display:flex; align-items:center; gap:2px;}
   nav.primary a{
@@ -95,14 +95,14 @@
 
   @media (max-width:900px){
     .nav-row{padding:10px 16px;}
-    .brand-logo{height:84px;}
+    .brand-logo{height:44px;}
     .burger{width:38px; height:38px;}
     nav.primary{
-      position:fixed; inset:106px 0 auto 0; background:var(--paper);
+      position:fixed; inset:66px 0 auto 0; background:var(--paper);
       flex-direction:column; align-items:stretch; gap:0; padding:8px 20px 20px;
       border-bottom:1px solid var(--line); box-shadow:var(--shadow);
       transform:translateY(-8px); opacity:0; pointer-events:none;
-      transition:transform .2s ease, opacity .2s ease; max-height:calc(100vh - 106px); overflow-y:auto;
+      transition:transform .2s ease, opacity .2s ease; max-height:calc(100vh - 66px); overflow-y:auto;
     }
     nav.primary a{padding:13px 8px; border-bottom:1px solid var(--line); border-radius:0;}
     nav.primary .nav-cta{margin:12px 0 0; border-radius:8px; text-align:center; border-bottom:none;}
@@ -277,7 +277,7 @@
 <header class="site">
   <div class="nav-row">
     <a class="brand" href="#inicio">
-      <img class="brand-logo" src="img/flead-logo.png" alt="FLEAD — Fundación Latinoamericana para la Educación a Distancia" width="299" height="104">
+      <img class="brand-logo" src="img/flead-logo.png" alt="FLEAD — Fundación Latinoamericana para la Educación a Distancia" width="1184" height="168">
     </a>
     <input type="checkbox" id="nav-toggle">
     <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span></label>
