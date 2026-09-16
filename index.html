@@ -162,9 +162,12 @@
   .alt{background:var(--paper-2);}
 
   /* Historia */
-  .historia .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:start;}
-  .timeline{border-left:2px solid var(--gold-soft); padding-left:22px; margin-left:6px;}
-  .timeline .yr{font-family:'Fraunces',serif; color:var(--gold); font-weight:700; font-size:1.4rem;}
+  .mv-row{margin-bottom:52px;}
+  .timeline-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px 48px; margin-top:8px;}
+  .timeline-item{border-left:2px solid var(--gold-soft); padding-left:20px;}
+  .timeline-item .yr{font-family:'Fraunces',serif; color:var(--gold); font-weight:700; font-size:1.3rem; display:block; margin-bottom:8px;}
+  .timeline-item p{font-size:.92rem; color:var(--ink-soft); margin:0 0 8px;}
+  .timeline-item p:last-child{margin-bottom:0;}
 
   /* Objetivos */
   .obj-highlights{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:8px;}
@@ -249,7 +252,7 @@
   @media (max-width:980px){
     .hero .wrap{grid-template-columns:1fr;}
     .hero-card{order:-1;}
-    .historia .wrap{grid-template-columns:1fr;}
+    .timeline-grid{grid-template-columns:1fr;}
     .obj-highlights{grid-template-columns:1fr 1fr;}
     .team-grid{grid-template-columns:1fr 1fr;}
     .programs-grid{grid-template-columns:1fr 1fr;}
@@ -317,23 +320,10 @@
     </div>
   </section>
 
-  <!-- LA FUNDACIÓN: historia + mision + vision -->
+  <!-- LA FUNDACIÓN: mision + vision + historia -->
   <section class="historia" id="fundacion">
     <div class="wrap">
-      <div>
-        <span class="eyebrow">Quiénes somos</span>
-        <h2>Nuestra historia</h2>
-        <div class="timeline">
-          <p><span class="yr">2002</span><br>Un grupo de investigadores impulsa un proyecto para integrar servicios y crear una plataforma de interacción entre profesionales de la Educación a Distancia.</p>
-          <p>Durante ese año, el trabajo colaborativo por Internet permite analizar las necesidades reales de investigadores independientes, profesores y estudiantes en formación continua.</p>
-          <p><span class="yr">2003</span><br>Para nuclear a esta comunidad creciente nace la <strong>Fundación Latinoamericana para la Educación a Distancia</strong>: una institución sin fines de lucro dedicada a difundir la modalidad a distancia como herramienta clave de la formación profesional permanente.</p>
-          <p><span class="yr">2005</span><br>FLEAD participa del Congreso Internacional LatinEduca2005 y firma sus primeros convenios de cooperación académica, entre ellos el convenio marco con la Universidad del Caribe (UNICARIBE, República Dominicana).</p>
-          <p><span class="yr">2008</span><br>Se realiza la primera edición del <strong>Congreso Virtual Iberoamericano EduQ@ de Calidad en Educación Virtual y a Distancia</strong>, que desde entonces reúne cada edición a especialistas de toda Iberoamérica.</p>
-          <p>En los años siguientes la Fundación consolida una red de investigadores y representantes en Argentina, México, España, República Dominicana, Bolivia, Perú y Grecia, y pone en marcha una Maestría Interuniversitaria junto a universidades asociadas.</p>
-          <p><span class="yr">2021</span><br>El Congreso EduQ@ llega a su octava edición, sosteniendo casi dos décadas de trabajo ininterrumpido por la Educación a Distancia en Iberoamérica.</p>
-        </div>
-      </div>
-      <div class="grid-2" style="grid-template-columns:1fr; gap:24px;">
+      <div class="grid-2 mv-row">
         <div class="card">
           <h3><span class="ic">🎯</span>Misión</h3>
           <p>Ubicar a la Educación a Distancia como parte integral del sistema educativo, considerándola una alternativa con formas particulares de organización y requerimientos específicos para su desarrollo.</p>
@@ -342,6 +332,126 @@
           <h3><span class="ic">🔭</span>Visión</h3>
           <p>Promover y facilitar el desarrollo de la Educación a Distancia en las prácticas educativas de todos los niveles del sistema, en el marco de los nuevos paradigmas metodológicos y tecnológicos.</p>
         </div>
+      </div>
+      <div class="section-head">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Nuestra historia</h2>
+      </div>
+      <div class="timeline-grid">
+          <div class="timeline-item">
+            <span class="yr">2002</span>
+            <p>Un grupo de investigadores impulsa un proyecto para integrar servicios y crear una plataforma de interacción entre profesionales de la Educación a Distancia.</p>
+            <p>Durante ese año, el trabajo colaborativo por Internet permite analizar las necesidades reales de investigadores independientes, profesores y estudiantes en formación continua.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2003</span>
+            <p>Para nuclear a esta comunidad creciente nace la <strong>Fundación Latinoamericana para la Educación a Distancia</strong>: una institución sin fines de lucro dedicada a difundir la modalidad a distancia como herramienta clave de la formación profesional permanente.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2004</span>
+            <p>FLEAD participa en el Congreso Internacional LatinEduca 2004.</p>
+            <p>La participación posiciona a la Fundación en espacios regionales de intercambio sobre educación y tecnología, un antecedente de su proyección internacional en educación a distancia.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2005</span>
+            <p>FLEAD firma sus primeros convenios internacionales con la Universidad San Francisco Xavier (Bolivia), la Universidad Ricardo Palma (Perú), la Universidad del Caribe–UNICARIBE (República Dominicana) y la Escuela Politécnica del Ejército–ESPE (Ecuador).</p>
+            <p>También acuerda con la Fundación Bariloche el dictado de cursos a distancia y se crea el Comité Científico de FLEAD.</p>
+            <p>Participación en la organización de LatinEduca 2005.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2006</span>
+            <p>Realiza en Nicaragua, junto a la Universidad Politécnica de Nicaragua (UPOLI), el Seminario Taller Internacional de Tutoría Telemática.</p>
+            <p>Con UNICARIBE y la Universidad Autónoma de Santo Domingo (UASD) impulsa el proyecto Aula Virtual en República Dominicana.</p>
+            <p>Participa además en el Foro Internacional “El Calidoscopio de las Identidades” de la Universidad de Guadalajara, México.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2007</span>
+            <p>FLEAD inicia el desarrollo de campus virtuales para instituciones educativas.</p>
+            <p>Entre las primeras experiencias se encuentra la Facultad de Ingeniería de Oberá, de la Universidad Nacional de Misiones.</p>
+            <p>Consultoría plurianual para estructurar el programa de educación a distancia de la Universidad Autónoma de Ciudad Juárez, México.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2008</span>
+            <p>Organiza el I Congreso Virtual Iberoamericano de Calidad en Educación a Distancia, EduQ@2008. El encuentro inaugura una serie que reunirá a investigadores e instituciones de toda Iberoamérica.</p>
+            <p>FLEAD participa también de la Conferencia Internacional del ICDE, junto a UNICARIBE, en Santo Domingo.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2009</span>
+            <p>Se celebra el II Congreso EduQ@2009, con una sede asociada en Perú. FLEAD consolida así la continuidad regional de su Congreso Virtual Iberoamericano.</p>
+            <p>Además, firma un convenio con la Universidad Autónoma del Estado de Hidalgo, México, para desarrollar una maestría interuniversitaria.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2010</span>
+            <p>Se realiza el III Congreso EduQ@2010.</p>
+            <p>FLEAD participa del XIV Congreso CREAD Mercosur/Sur, realizado en Trelew, Argentina, en el marco de los 20 años del Consorcio Red de Educación a Distancia (CREAD).</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2011</span>
+            <p>FLEAD implementa el Programa de Acreditación de Roles Docentes del Sistema de Educación a Distancia de la Universidad Católica de Santiago de Guayaquil, Ecuador.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2012</span>
+            <p>Se inaugura en Guayaquil el IV Congreso EduQ@2012, junto a la Universidad Católica de Santiago de Guayaquil, con referentes internacionales como Lorenzo García Aretio y Manuel Moreno Castañeda.</p>
+            <p>FLEAD también participa del I Congreso Internacional de Educación a Distancia de la Universidad del Salvador, Argentina.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2013</span>
+            <p>El V Congreso EduQ@2013 adopta el nombre Congreso Virtual Iberoamericano de Calidad en Educación Virtual y a Distancia, expresando la ampliación de su alcance hacia la educación virtual.</p>
+            <p>FLEAD participa además en el 8.º Congreso CITICED y CREAD Caribe.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2015</span>
+            <p>Se realiza el VI Congreso EduQ@2015, con apoyo de instituciones como AMECYD, México. FLEAD participa en la IX edición de CITICED y CREAD en República Dominicana.</p>
+            <p>Programa Internacional de Diseño Instruccional con la Universidad UAPA, egreso de la primera cohorte de la Maestría en Gestión de Instituciones Educativas con Modalidad Virtual (junto a la Universidad Autónoma del Estado de Hidalgo) y nuevos convenios de posgrado con UPOLI.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2016</span>
+            <p>FLEAD dicta su primer curso de formación docente en la Universidad Católica de Cuyo y egresa la segunda cohorte de la maestría MGIEV con la Universidad Autónoma del Estado de Hidalgo.</p>
+            <p>Además, firma convenios con la Universidad Nacional de Tucumán y UPOLI para una nueva maestría en gestión de la educación virtual.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2017</span>
+            <p>FLEAD firma un convenio con la Universidad Politécnica de Nicaragua (UPOLI) e inicia la Maestría en Educación Virtual y a Distancia, propuesta que se desarrolla durante cinco años y reúne varias cohortes.</p>
+            <p>La Universidad Católica de Cuyo también encarga a FLEAD la administración de su campus virtual, tarea sostenida hasta 2022.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2018</span>
+            <p>FLEAD firma un nuevo convenio con la Universidad Católica de Cuyo para el dictado de cursos a distancia.</p>
+            <p>Se realiza EduQ@2017, con más de 1.700 participantes y 226 trabajos científicos.</p>
+            <p>La Fundación participa además en EduAction Miami 2018, organizado por Humboldt International University, y en un congreso de la Universidad Nacional de Costa Rica.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2020</span>
+            <p>FLEAD rediseña las carreras de Analítica y Ciencia de los Datos y Desarrollo de Software del Instituto Tecnológico de Las Américas (ITLA), República Dominicana.</p>
+            <p>Elabora el reglamento de virtualización del ITLA y firma un Acuerdo Marco con la institución.</p>
+            <p>Se defienden las primeras tesis de la maestría con UPOLI, se renueva el convenio y FLEAD se incorpora a la Maestría en Neuropedagogía de la Universidad del Atlántico, Colombia.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2021</span>
+            <p>FLEAD colabora en el Doctorado Consorciado en Ciencias de la Educación de la Universidad Abierta Para Adultos (UAPA).</p>
+            <p>También se integra a la Maestría en Educación Virtual de la Universidad Americana, Nicaragua. Ambas propuestas amplían su participación en posgrados regionales.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2022</span>
+            <p>Conferencia en el XII CITICED, realizado en República Dominicana.</p>
+            <p>Dicta un Programa de Certificación Docente para la Virtualidad en la Universidad Católica de Cuyo y un taller de evaluación en la Universidad Autónoma de Baja California Sur, México.</p>
+            <p>También participa en el VII Congreso EduAction Miami 2022.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2023</span>
+            <p>Conferencia “Ética e Inteligencia Artificial en la Educación Superior”, realizada en la Universidad Autónoma de Santo Domingo (UASD), República Dominicana.</p>
+            <p>El hito incorpora la reflexión sobre inteligencia artificial a su agenda académica regional.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2024</span>
+            <p>FLEAD participa en el Programa de Certificación en Docencia Virtual de Alta Calidad en la Universidad Tecnológica del Cibao Oriental (UTECO), República Dominicana.</p>
+            <p>Abre con una conferencia magistral el II Seminario Internacional de Educación, IA y Tecnologías Emergentes de UAPA, y participa en el Congreso de Inteligencia Artificial de UNITEC, Honduras.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2025</span>
+            <p>Participación en el curso de posgrado “Inteligencia Artificial en Investigación” en la Universidad Tecnológica Nacional, Argentina.</p>
+            <p>Presenta una ponencia en el V Congreso Iberoamericano FilCyT, organizado por la Universidad Autónoma de Santo Domingo (UASD).</p>
+          </div>
       </div>
     </div>
   </section>
