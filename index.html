@@ -524,7 +524,7 @@
           <div class="role">Presidente</div>
           <h3 style="margin-bottom:4px;">Dr. José Luis Córica</h3>
           <p style="margin-bottom:6px;color:var(--ink-soft);">Doctor en Educación, mención Doctorado Internacional, por la UNED de Madrid (2019, sobresaliente cum laude). Dirige la Fundación y el Instituto Latinoamericano de Investigación Educativa desde 2011, y es Director de Ciencia de Datos en EmotionMetrics.ai. Profesor de posgrado en universidades de España, Argentina, México, Nicaragua y República Dominicana; miembro del Board of Experts de HE Higher Education Ranking.</p>
-          <p style="margin:0;font-size:.9rem;"><a href="mailto:presidencia@flead.org">presidencia@flead.org</a> · <a href="mailto:jlcorica@flead.org">jlcorica@flead.org</a></p>
+          <p style="margin:0;font-size:.9rem;"><a class="mail-link" data-u="presidencia" data-d="flead.org"></a> · <a class="mail-link" data-u="jlcorica" data-d="flead.org"></a></p>
         </div>
       </div>
 
@@ -562,7 +562,7 @@
           <div class="ic">💻</div>
           <h3 style="font-size:1.1rem;">Aula Virtual (Moodle)</h3>
           <p>Ofrecemos aulas virtuales Moodle propias, personalizadas con la identidad de cada institución educativa, para hasta 1.000 usuarios y 50 cursos.</p>
-          <a class="go" href="mailto:aulavirtuales@flead.org">Solicitar información</a>
+          <a class="go mail-link" data-u="aulavirtuales" data-d="flead.org">Solicitar información</a>
         </div>
 
         <div class="program">
@@ -590,14 +590,14 @@
           <div class="ic">🔬</div>
           <h3 style="font-size:1.1rem;">Instituto Latinoamericano de Investigación Educativa</h3>
           <p>Nuclea a investigadores independientes con casillas de correo, alojamiento web, procesamiento estadístico, aulas virtuales y bibliotecas de datos compartidos.</p>
-          <a class="go" href="mailto:info@flead.org">Conocer los proyectos</a>
+          <a class="go mail-link" data-u="info" data-d="flead.org">Conocer los proyectos</a>
         </div>
 
         <div class="program">
           <div class="ic">🎓</div>
           <h3 style="font-size:1.1rem;">Dirección de Tesis</h3>
           <p>Acompañamos tesistas de grado, maestría y doctorado con un director de tesis y una comunidad de investigadores en su misma línea de trabajo.</p>
-          <a class="go" href="mailto:info@flead.org">Consultar disponibilidad</a>
+          <a class="go mail-link" data-u="info" data-d="flead.org">Consultar disponibilidad</a>
         </div>
 
       </div>
@@ -616,9 +616,9 @@
         <div class="contact-card">
           <span class="eyebrow">Correos directos</span>
           <ul class="contact-list">
-            <li><span class="k">Consultas generales</span><a href="mailto:info@flead.org">info@flead.org</a></li>
-            <li><span class="k">Presidencia</span><a href="mailto:presidencia@flead.org">presidencia@flead.org</a></li>
-            <li><span class="k">Aulas virtuales / Moodle</span><a href="mailto:aulavirtuales@flead.org">aulavirtuales@flead.org</a></li>
+            <li><span class="k">Consultas generales</span><a class="mail-link" data-u="info" data-d="flead.org"></a></li>
+            <li><span class="k">Presidencia</span><a class="mail-link" data-u="presidencia" data-d="flead.org"></a></li>
+            <li><span class="k">Aulas virtuales / Moodle</span><a class="mail-link" data-u="aulavirtuales" data-d="flead.org"></a></li>
           </ul>
         </div>
       </div>
@@ -630,7 +630,7 @@
 <footer class="site">
   <div class="wrap">
     <span>© <span id="year"></span> Fundación Latinoamericana para la Educación a Distancia (FLEAD)</span>
-    <span><a href="mailto:info@flead.org">info@flead.org</a></span>
+    <span><a class="mail-link" data-u="info" data-d="flead.org"></a></span>
   </div>
 </footer>
 
@@ -641,6 +641,11 @@
       var t = document.getElementById('nav-toggle');
       if (t) t.checked = false;
     });
+  });
+  document.querySelectorAll('.mail-link').forEach(function(a){
+    var addr = a.getAttribute('data-u') + '@' + a.getAttribute('data-d');
+    a.setAttribute('href', 'mailto:' + addr);
+    if (!a.textContent.trim()) a.textContent = addr;
   });
 </script>
 
